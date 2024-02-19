@@ -5,13 +5,13 @@ import '../App.css'
 const NewsItem = ({title, description, src, url}) => {
 
   const defaultDesc = (
-    <>
-      <hr />
-      <hr />
-      <hr />
-      <hr />
-      <hr />
-    </>
+    <div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
   );
 
   const handleImageError = (e)=>{
@@ -25,7 +25,11 @@ const NewsItem = ({title, description, src, url}) => {
       <img src={src?src:defaultImage} onError={handleImageError} style={{height:"200px"}} className="card-img-top" alt="..."/>
       <div className="card-body">
         <h5 className="card-title">{title.slice(0,48).trim() + dots}</h5>
-        <p className="card-text">{description?description.slice(0,90).trim() + dots:defaultDesc}</p>
+        {description ? (
+        <p className="card-text">{description.slice(0, 90).trim() + dots}</p>
+      ) : (
+        <div>{defaultDesc}</div>
+      )}
         <a href={url} className="btn btn-primary">Read More</a>
       </div>
     </div>
